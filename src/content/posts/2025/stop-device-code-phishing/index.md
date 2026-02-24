@@ -11,7 +11,7 @@ tags:
 coverImage: "hacker-at-desk.png"
 ---
 
-Device code phishing is a real threat that often goes unmitigated. Microsoft's [recent warning](https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/) that threat actor Storm-2372 is actively executing a device-code phishing campaign drives that home. If you want to learn more about device-code phishing, check out the episode of "The Game" below or perform some research. In this article, I'll talk through how you can block device code flows with Conditional Access.
+Device code phishing is a real threat that often goes unmitigated. Microsoft's [recent warning](https://www.microsoft.com/en-us/security/blog/02/13/storm-2372-conducts-device-code-phishing-campaign/) that threat actor Storm-2372 is actively executing a device-code phishing campaign drives that home. If you want to learn more about device-code phishing, check out the episode of "The Game" below or perform some research. In this article, I'll talk through how you can block device code flows with Conditional Access.
 
 \[embed\]https://www.youtube.com/watch?v=EozC9TOkB7w\[/embed\]
 

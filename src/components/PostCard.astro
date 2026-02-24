@@ -13,7 +13,7 @@ const slugParts = post.slug.split('/');
 const year = slugParts[0];
 const postSlug = slugParts.slice(1).join('/');
 
-const postUrl = `/blog/${post.slug}`;
+const postUrl = `/blog/${postSlug}`;
 
 // Build the cover image URL from the public directory
 // Images are served from /posts/{year}/{slug}/images/{filename}
