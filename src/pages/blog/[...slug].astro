@@ -4,18 +4,19 @@ import PostLayout from '../../layouts/PostLayout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  return posts.map(post => {
+    const slugParts = post.slug.split('/');
+    const year = slugParts[0];
+    const postSlug = slugParts.slice(1).join('/');
+    return {
+      params: { slug: postSlug },
+      props: { post, year, postSlug },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, year, postSlug } = Astro.props;
 const { Content } = await post.render();
-
-const slugParts = post.slug.split('/');
-const year = slugParts[0];
-const postSlug = slugParts.slice(1).join('/');
 ---
 
 <PostLayout
