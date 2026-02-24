@@ -21,3 +21,8 @@ Thumbs.db
 *.ntvs*
 *.njsproj
 *.sln
+
+# env
+.env.*
+.env
+*.env
