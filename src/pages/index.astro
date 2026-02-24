@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const recentPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 9);
+---
+
+<BaseLayout title="Home" description="Security, technology, and insights from Dom Kirby.">
+  <!-- Hero -->
+  <section class="bg-navy border-b border-green/20 py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+        Security | Technology | Insights
+      </h1>
+      <p class="text-white/70 text-lg max-w-2xl mx-auto">
+        Thoughts on cybersecurity, technology trends, and the tools that make us more effective.
+      </p>
+    </div>
+  </section>
+
+  <!-- Recent posts -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-white mb-8">Recent Posts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {recentPosts.map(post => <PostCard post={post} />)}
+    </div>
+    <div class="mt-10 text-center">
+      <a
+        href="/blog"
+        class="inline-block bg-green text-navy font-bold px-8 py-3 rounded-lg hover:bg-green/90 transition-colors"
+      >
+        View All Posts
+      </a>
+    </div>
+  </section>
+</BaseLayout>
