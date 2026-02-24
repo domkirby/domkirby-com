@@ -22,6 +22,10 @@ Thumbs.db
 *.njsproj
 *.sln
 
+# env
+.env.*
+.env
+*.env
 # wrangler files
 .wrangler
 .dev.vars*
