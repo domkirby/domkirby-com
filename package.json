@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preview": "npm run build && wrangler dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "repository": {
     "type": "git",
@@ -22,9 +24,13 @@
   },
   "homepage": "https://github.com/domkirby/domkirby-com#readme",
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.17.3",
     "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "wrangler": "^4.68.0"
   }
 }
