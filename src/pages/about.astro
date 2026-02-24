@@ -4,32 +4,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="About Me" description="About Dom Kirby — cybersecurity professional, content creator, and technology enthusiast.">
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-4xl font-bold text-white mb-8">About Me</h1>
+
+    <!-- Header: headshot + name -->
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-10">
+      <img
+        src="/headshot.png"
+        alt="Dom Kirby"
+        class="w-36 h-36 rounded-full object-cover ring-4 ring-green/40 flex-shrink-0"
+      />
+      <div class="text-center sm:text-left">
+        <h1 class="text-4xl font-bold text-white mb-2">Dom Kirby</h1>
+        <p class="text-green font-medium">Cybersecurity, Cloud & AI for SMBs | CISSP, SSCP | People-First Leader</p>
+      </div>
+    </div>
 
     <div class="prose prose-invert prose-lg max-w-none
       prose-headings:text-white
       prose-a:text-green
       prose-strong:text-white
     ">
+      <p>I work at the intersection of technology, business, and people. At Pax8, I lead a team of engineers, strategists, and operations professionals who deliver technical outcomes for thousands of managed service providers. My focus is on cloud, cybersecurity, and how AI can transform the way services are delivered at scale.</p>
       <p>
-        Hi, I'm Dom Kirby — a cybersecurity professional, content creator, and technology enthusiast
-        based in the United States. I've spent over a decade working in IT and information security,
-        helping organizations understand and manage risk.
+        I spend a lot of time helping others cut through complexity—whether that’s driving results for partners, shaping how vendors think about security and AI, or sharing insights on stage at conferences. Just as important, I’m always learning. Every conversation, project, and challenge is an opportunity to pick up something new and carry it forward.
       </p>
-
       <p>
-        On this site I write about cybersecurity trends, technology tools, and the intersection of
-        security with everyday business operations. My goal is to make complex topics accessible
-        without dumbing them down.
+        At the core, I’m passionate about connecting innovation to real-world outcomes. That means building strategies that don’t just look good on paper, but work in practice.
       </p>
-
-      <h2>What I Do</h2>
-      <ul>
-        <li>Cybersecurity consulting and advisory</li>
-        <li>Content creation — articles, video, and podcasts</li>
-        <li>Speaking and training</li>
-      </ul>
-
+      <p>
+        Outside of work, I keep things grounded with family, community, and a steady curiosity for what’s next.
+      </p>
       <h2>Get in Touch</h2>
       <p>
         Feel free to reach out via the <a href="/contact">contact page</a>, or connect with me

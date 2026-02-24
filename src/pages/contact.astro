@@ -11,25 +11,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+
       <a
-        href="https://twitter.com/domkirby"
+        href="https://linkedin.com/in/dominickirby"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-green/40 transition-colors group"
+      >
+        <h2 class="text-lg font-bold text-white group-hover:text-green transition-colors mb-1">LinkedIn (Preferred)</h2>
+        <p class="text-white/60 text-sm">linkedin.com/in/dominickirby</p>
+      </a>
+
+      <a
+        href="https://twitter.com/dom_kirby"
         target="_blank"
         rel="noopener noreferrer"
         class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-green/40 transition-colors group"
       >
         <h2 class="text-lg font-bold text-white group-hover:text-green transition-colors mb-1">Twitter / X</h2>
-        <p class="text-white/60 text-sm">@domkirby</p>
+        <p class="text-white/60 text-sm">@dom_kirby</p>
       </a>
 
       <a
-        href="https://linkedin.com/in/domkirby"
+        href="#"
+        class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-green/40 transition-colors group"
+        data-signal-username="domkirby.26"
+        id="signalLink"
+      >
+        <h2 class="text-lg font-bold text-white mb-1">Signal</h2>
+        <p class="text-white/60 text-sm">@domkirby.26</p>
+      </a>
+
+      <a
+        href="https://bsky.app/profile/domkirby.com"
         target="_blank"
         rel="noopener noreferrer"
         class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-green/40 transition-colors group"
       >
-        <h2 class="text-lg font-bold text-white group-hover:text-green transition-colors mb-1">LinkedIn</h2>
-        <p class="text-white/60 text-sm">linkedin.com/in/domkirby</p>
+        <h2 class="text-lg font-bold text-white group-hover:text-green transition-colors mb-1">Bluesky</h2>
+        <p class="text-white/60 text-sm">@domkirby.com</p>
       </a>
+
+      
 
       <a
         href="https://youtube.com/@domkirby"
@@ -42,4 +65,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </a>
     </div>
   </section>
+  <script>
+    //copy to clipboard for signal username
+    document.getElementById('signalLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      const username = this.getAttribute('data-signal-username');
+      navigator.clipboard.writeText(username).then(() => {
+        alert('Signal username copied to clipboard: ' + username);
+      }).catch(err => {
+        alert('Failed to copy: ' + err);
+      });
+    });
+  </script>
 </BaseLayout>
