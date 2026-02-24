@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  site: 'https://astro.domkirby.com',
+  site: 'https://domkirby.com',
   output: 'static',
   integrations: [tailwind()],
   adapter: cloudflare(),
