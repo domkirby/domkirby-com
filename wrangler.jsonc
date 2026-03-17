@@ -11,7 +11,10 @@
     "directory": "dist"
   },
   "vars": {
-    "PUBLIC_USE_CF_IMAGES": true,
+    "PUBLIC_USE_CF_IMAGES": {
+      "type": "plain",
+      "value": true
+    }
   },
   "observability": {
     "enabled": true
