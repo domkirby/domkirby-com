@@ -10,6 +10,11 @@
     "binding": "ASSETS",
     "directory": "dist"
   },
+  "vars": {
+    "PUBLIC_USE_CF_IMAGES": {
+      "type": true
+    },
+  },
   "observability": {
     "enabled": true
   },
