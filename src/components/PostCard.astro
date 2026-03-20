@@ -9,7 +9,7 @@ const { post } = Astro.props;
 const { title, date, categories, coverImage } = post.data;
 
 // Derive the post's year from the slug (e.g. "2024/cybersecurity-2025-predictions")
-const slugParts = post.slug.split('/');
+const slugParts = post.id.split('/');
 const year = slugParts[0];
 const postSlug = slugParts.slice(1).join('/');
 
