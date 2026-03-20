@@ -1,6 +1,6 @@
 # domkirby.com
 
-Personal website and blog for Dom Kirby. Built with [Astro](https://astro.build) and Tailwind CSS.
+Personal website and blog for Dom Kirby. Built with [Astro](https://astro.build) and Tailwind CSS 4.
 
 ## Development
 
@@ -121,11 +121,13 @@ src/
 │   ├── Footer.astro     # Site footer
 │   └── PostCard.astro   # Blog post card
 ├── content/
-│   ├── config.ts        # Content collection schema
 │   └── posts/           # Blog posts (organized by year)
+├── content.config.ts    # Content collection schema
 ├── layouts/
 │   ├── BaseLayout.astro # Base page wrapper
 │   └── PostLayout.astro # Individual post wrapper
+├── styles/
+│   └── global.css       # Tailwind CSS entrypoint and theme tokens
 └── pages/
     ├── index.astro      # Home page
     ├── about.astro
