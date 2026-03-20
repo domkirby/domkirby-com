@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-navy: #0b1970;
+  --color-green: #7ed957;
+  --color-linkblue: #1025a1;
+}

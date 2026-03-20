@@ -4,6 +4,7 @@ const currentPath = Astro.url.pathname;
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Speaking', href: 'https://speaking.domkirby.com', external: true },
   { label: 'Store', href: 'https://store.domkirby.com', external: true },
   { label: 'About Me', href: '/about' },
   { label: 'Tools and Stuff', href: '/tools' },
@@ -20,7 +21,7 @@ function isActive(href: string): boolean {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/" class="flex-shrink-0">
+      <a href="/" class="shrink-0">
         <img src="/dk-light.png" alt="Dom Kirby" class="h-10 w-auto" />
       </a>
 
