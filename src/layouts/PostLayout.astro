@@ -27,19 +27,20 @@ const coverImageUrl = coverImage && postSlug && year
 <BaseLayout title={title} description={description} ogImage={coverImageUrl ?? undefined}>
   <!-- Hero / cover image -->
   {coverImageUrl ? (
-    <div class="w-full max-h-[480px] overflow-hidden">
+    <div class="relative w-full max-h-[480px] overflow-hidden">
       <img
         src={coverImageUrl}
         alt={title}
         class="w-full h-full object-cover"
       />
+      <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy to-transparent" />
     </div>
   ) : (
     <div class="w-full h-32 bg-gradient-to-r from-navy via-linkblue to-navy border-b border-green/20" />
   )}
 
   <!-- Post header -->
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 border-b border-green/10">
     {categories.length > 0 && (
       <div class="flex flex-wrap gap-2 mb-4">
         {categories.map(cat => (

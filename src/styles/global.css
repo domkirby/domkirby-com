@@ -6,3 +6,10 @@
   --color-green: #7ed957;
   --color-linkblue: #1025a1;
 }
+
+@layer base {
+  body {
+    background-image: linear-gradient(180deg, #0d1f8c0a 0%, transparent 500px);
+    background-attachment: local;
+  }
+}
