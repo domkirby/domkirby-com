@@ -11,14 +11,19 @@ const recentPosts = allPosts
 
 <BaseLayout title="Home" description="Security, technology, and insights from Dom Kirby.">
   <!-- Hero -->
-  <section class="bg-navy border-b border-green/20 py-16 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+  <section class="relative bg-gradient-to-br from-[#0d1f8c] via-navy to-navy border-b border-green/20 py-20 px-4 overflow-hidden">
+    <!-- Atmospheric spotlight -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[300px] bg-green/5 blur-3xl rounded-full"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
         Security | Technology | Insights
       </h1>
-      <p class="text-white/70 text-lg max-w-2xl mx-auto">
+      <p class="text-white/70 text-lg max-w-2xl mx-auto mb-8">
         Thoughts on cybersecurity, technology trends, and the tools that make us more effective.
       </p>
+      <div class="h-px max-w-xs mx-auto bg-gradient-to-r from-transparent via-green/40 to-transparent"></div>
     </div>
   </section>
 
