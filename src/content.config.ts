@@ -8,14 +8,21 @@ const posts = defineCollection({
     pattern: '**/index.md',
     generateId: ({ entry }) => entry.replace(/\/index\.md$/, ''),
   }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    categories: z.array(z.string()).default([]),
-    tags: z.array(z.string()).default([]),
-    coverImage: z.string().optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.coerce.date(),
+      categories: z.array(z.string()).default([]),
+      tags: z.array(z.string()).default([]),
+      // Frontmatter stores just the filename; the actual file lives in the
+      // post's images/ subfolder, so prefix the path before resolving it.
+      coverImage: z
+        .string()
+        .transform((filename) => `./images/${filename}`)
+        .pipe(image())
+        .optional(),
+      draft: z.boolean().default(false),
+    }),
 });
 
 export const collections = { posts };
