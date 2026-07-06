@@ -80,7 +80,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(dirname "$SCRIPT_DIR")"
 
 POST_DIR="$ROOT/src/content/posts/$YEAR/$SLUG"
-PUBLIC_IMG_DIR="$ROOT/public/posts/$YEAR/$SLUG/images"
 
 if [[ -d "$POST_DIR" ]]; then
   echo ""
@@ -89,7 +88,6 @@ if [[ -d "$POST_DIR" ]]; then
 fi
 
 mkdir -p "$POST_DIR/images"
-mkdir -p "$PUBLIC_IMG_DIR"
 
 # Build frontmatter
 if [[ -n "$COVER" ]]; then
@@ -117,12 +115,11 @@ EOF
 echo ""
 echo "✓ Post created:"
 echo "    $POST_DIR/index.md"
-echo "    $POST_DIR/images/         ← place cover + inline images here"
-echo "    $PUBLIC_IMG_DIR/  ← mirror images here to serve them"
+echo "    $POST_DIR/images/  ← place cover + inline images here"
 echo ""
-echo "  URL will be: /blog/$YEAR/$SLUG"
+echo "  URL will be: /blog/$SLUG"
 echo ""
-echo "  When you add images, copy them to both locations:"
-echo "    src/content/posts/$YEAR/$SLUG/images/<file>"
-echo "    public/posts/$YEAR/$SLUG/images/<file>"
+echo "  Reference inline images in the post body with a path relative to"
+echo "  index.md, e.g. ![alt text](images/<file>) — Astro resolves and"
+echo "  optimizes them automatically at build time, no copying required."
 echo ""

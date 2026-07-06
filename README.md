@@ -64,47 +64,26 @@ Your post content starts here...
 | `tags` | No | Lowercase strings; available for future filtering |
 | `coverImage` | No | Filename only — image must live in the post's `images/` folder |
 
-#### 3. Mirror images to `public/`
+`coverImage` is validated at build time against the content schema (`src/content.config.ts`) — if the filename doesn't exist in the post's `images/` folder, `npm run build` will fail with a clear error instead of silently shipping a broken image. It's rendered through Astro's image pipeline (`astro:assets`), so it's automatically resized, converted to modern formats, and won't cause layout shift.
 
-Images are served from `public/`, so every image (cover or inline) must exist in **both** locations:
+#### 3. Add inline images in post content
 
-```
-src/content/posts/2025/my-new-post/images/my-image.jpg   ← kept with the post
-public/posts/2025/my-new-post/images/my-image.jpg        ← served at runtime
-```
-
-Copy them manually:
-
-```bash
-cp src/content/posts/2025/my-new-post/images/my-image.jpg \
-   public/posts/2025/my-new-post/images/
-```
-
-Or copy everything at once after adding all images:
-
-```bash
-cp -r src/content/posts/2025/my-new-post/images/ \
-      public/posts/2025/my-new-post/images/
-```
-
-#### 4. Add inline images in post content
-
-Reference images in Markdown using a path relative to the `public/` root:
+Just put the file in the post's `images/` folder and reference it with a path relative to `index.md`:
 
 ```markdown
-![Alt text describing the image](/posts/2025/my-new-post/images/my-image.jpg)
+![Alt text describing the image](images/my-image.jpg)
 ```
 
-The path always starts with `/posts/{year}/{slug}/images/` — matching where you copied the file in step 3. The prose styles in `PostLayout.astro` will automatically center and round the corners of inline images.
+No need to copy anything to `public/` — Astro resolves and optimizes the image automatically at build time. The prose styles in `PostLayout.astro` will automatically center and round the corners of inline images.
 
-#### 5. Preview and publish
+#### 4. Preview and publish
 
 ```bash
 npm run dev
-# Visit http://localhost:4321/blog/2025/my-new-post
+# Visit http://localhost:4321/blog/my-new-post
 ```
 
-Once it looks good, commit everything (the `src/content/posts/` entry **and** the `public/posts/` images) and deploy.
+Once it looks good, commit the `src/content/posts/` entry (images included) and deploy.
 
 ---
 
@@ -134,6 +113,6 @@ src/
     ├── contact.astro
     ├── tools.astro
     └── blog/
-        ├── index.astro       # Post archive
+        ├── [...page].astro   # Paginated post archive
         └── [...slug].astro   # Dynamic post pages
 ```
