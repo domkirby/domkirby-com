@@ -6,7 +6,7 @@ import remarkWpButtons from './src/plugins/remark-wp-buttons.mjs';
 export default defineConfig({
   site: 'https://domkirby.com',
   output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({ imageService: 'compile' }),
   vite: {
     plugins: [tailwindcss()],
   },

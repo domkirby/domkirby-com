@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -8,18 +9,11 @@ interface Props {
 const { post } = Astro.props;
 const { title, date, categories, coverImage } = post.data;
 
-// Derive the post's year from the slug (e.g. "2024/cybersecurity-2025-predictions")
+// post.id is "{year}/{slug}" (e.g. "2024/cybersecurity-2025-predictions")
 const slugParts = post.id.split('/');
-const year = slugParts[0];
 const postSlug = slugParts.slice(1).join('/');
 
 const postUrl = `/blog/${postSlug}`;
-
-// Build the cover image URL from the public directory
-// Images are served from /posts/{year}/{slug}/images/{filename}
-const coverImageUrl = coverImage
-  ? `/posts/${year}/${postSlug}/images/${coverImage}`
-  : null;
 
 // Format date
 const formattedDate = date.toLocaleDateString('en-US', {
@@ -41,17 +35,19 @@ const excerpt = bodyText.slice(0, 160) + (bodyText.length > 160 ? '...' : '');
 ---
 
 <article class="bg-gradient-to-br from-[#0f1e8a]/30 to-navy border border-white/10 rounded-xl overflow-hidden hover:border-green/50 hover:shadow-[0_0_24px_-4px_rgba(126,217,87,0.15)] transition-all duration-300 group">
-  {coverImageUrl && (
+  {coverImage && (
     <a href={postUrl} class="block overflow-hidden aspect-video">
-      <img
-        src={coverImageUrl}
+      <Image
+        src={coverImage}
         alt={title}
+        width={640}
+        height={360}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         loading="lazy"
       />
     </a>
   )}
-  {!coverImageUrl && (
+  {!coverImage && (
     <a href={postUrl} class="block aspect-video bg-gradient-to-br from-navy to-linkblue flex items-center justify-center">
       <span class="text-green text-4xl font-bold opacity-20">DK</span>
     </a>
