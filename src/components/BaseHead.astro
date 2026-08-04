@@ -37,10 +37,4 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 <meta name="msapplication-TileImage" content="https://i.domk.pro/astroSite/icons/dk-green-270x270.png" />
 
 <!--Plausible Analytics -->
-<script async src="https://domkirby.com/xr/ab/script.js"></script>
-<script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init({
-    endpoint: "https://domkirby.com/xr/log/event"
-  })
-</script>
+<script defer data-domain="domkirby.com" src="https://a.domk.pro/js/script.outbound-links.tagged-events.js"></script>
