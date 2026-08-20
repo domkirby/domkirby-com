@@ -69,5 +69,9 @@ const ogImage = coverImage
     ">
       <slot />
     </article>
+    <!-- Plausible send blog post view event -->
+    <script>
+      window.plausible?.('Blog Post View', { props: { title:document.title } });
+    </script>
   </div>
 </BaseLayout>
