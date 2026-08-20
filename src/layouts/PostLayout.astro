@@ -70,7 +70,7 @@ const ogImage = coverImage
       <slot />
     </article>
     <!-- Plausible send blog post view event -->
-    <script>
+    <script define:vars={{ title }}>
       const location = window.location.href;
       window.plausible && plausible('Blog Post View', { props: { title: { title } } });
     </script>
