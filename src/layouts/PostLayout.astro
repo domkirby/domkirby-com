@@ -25,53 +25,61 @@ const ogImage = coverImage
 ---
 
 <BaseLayout title={title} description={description} ogImage={ogImage}>
-  <!-- Hero / cover image -->
-  {coverImage ? (
-    <div class="relative w-full max-h-[480px] overflow-hidden">
-      <Image
-        src={coverImage}
-        alt={title}
-        width={1600}
-        height={900}
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy to-transparent" />
-    </div>
-  ) : (
-    <div class="w-full h-32 bg-gradient-to-r from-navy via-linkblue to-navy border-b border-green/20" />
-  )}
-
-  <!-- Post header -->
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 border-b border-green/10">
-    {categories.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-4">
-        {categories.map(cat => (
-          <span class="text-xs font-semibold uppercase tracking-widest text-green">
-            {cat}
-          </span>
-        ))}
+  <!--
+    data-pagefind-body scopes Pagefind's index to the post itself — the title,
+    date, categories and rendered markdown — so the Header/Footer chrome that
+    repeats on every page never lands in a search result.
+  -->
+  <div data-pagefind-body>
+    <!-- Hero / cover image -->
+    {coverImage ? (
+      <div class="relative w-full max-h-[480px] overflow-hidden">
+        <Image
+          src={coverImage}
+          alt={title}
+          width={1600}
+          height={900}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy to-transparent" />
       </div>
+    ) : (
+      <div class="w-full h-32 bg-gradient-to-r from-navy via-linkblue to-navy border-b border-green/20" />
     )}
-    <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">{title}</h1>
-    <p class="text-white/50 text-sm">{formattedDate}</p>
+
+    <!-- Post header -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 border-b border-green/10">
+      {categories.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {categories.map(cat => (
+            <span class="text-xs font-semibold uppercase tracking-widest text-green">
+              {cat}
+            </span>
+          ))}
+        </div>
+      )}
+      <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">{title}</h1>
+      <p class="text-white/50 text-sm">{formattedDate}</p>
+    </div>
+
+    <!-- Post content -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <article class="prose prose-invert prose-lg max-w-none
+        prose-headings:text-white
+        prose-a:text-green prose-a:no-underline prose-a:hover:underline
+        prose-strong:text-white
+        prose-code:text-green prose-code:bg-white/10 prose-code:px-1 prose-code:rounded
+        prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10
+        prose-blockquote:border-l-green prose-blockquote:text-white/70
+        prose-img:rounded-lg prose-img:mx-auto
+      ">
+        <slot />
+      </article>
+    </div>
   </div>
 
-  <!-- Post content -->
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-    <article class="prose prose-invert prose-lg max-w-none
-      prose-headings:text-white
-      prose-a:text-green prose-a:no-underline prose-a:hover:underline
-      prose-strong:text-white
-      prose-code:text-green prose-code:bg-white/10 prose-code:px-1 prose-code:rounded
-      prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10
-      prose-blockquote:border-l-green prose-blockquote:text-white/70
-      prose-img:rounded-lg prose-img:mx-auto
-    ">
-      <slot />
-    </article>
-    <!-- Plausible send blog post view event -->
-    <script>
-      window.plausible?.('Blog Post View', { props: { title:document.title } });
-    </script>
-  </div>
+  <!-- Plausible send blog post view event -->
+  <script>
+    window.plausible?.('Blog Post View', { props: { title:document.title } });
+  </script>
 </BaseLayout>

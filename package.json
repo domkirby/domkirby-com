@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist/client",
     "preview": "npm run build && wrangler dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npm run build && wrangler deploy",
@@ -31,6 +31,7 @@
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
+    "pagefind": "^1.5.2",
     "wrangler": "^4.68.0"
   }
 }

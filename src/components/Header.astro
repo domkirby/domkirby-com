@@ -46,6 +46,20 @@ function isActive(href: string): boolean {
             )}
           </a>
         ))}
+
+        <!-- Search -->
+        <a
+          href="/search"
+          aria-label="Search"
+          class:list={[
+            'transition-colors',
+            isActive('/search') ? 'text-green' : 'text-white/80 hover:text-green',
+          ]}
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+          </svg>
+        </a>
       </nav>
 
       <!-- Mobile hamburger -->
@@ -86,6 +100,19 @@ function isActive(href: string): boolean {
           )}
         </a>
       ))}
+
+      <a
+        href="/search"
+        class:list={[
+          'flex items-center gap-2 py-2 text-sm font-medium transition-colors',
+          isActive('/search') ? 'text-green' : 'text-white/80 hover:text-green',
+        ]}
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+        </svg>
+        Search
+      </a>
     </nav>
   </div>
 </header>
