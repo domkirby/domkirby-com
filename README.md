@@ -10,6 +10,66 @@ npm run build     # Production build to ./dist
 npm run preview   # Preview production build locally
 ```
 
+## Search
+
+Site-wide search is powered by [Pagefind](https://pagefind.app) — a static search
+index built from the site's own HTML. There's no backend and no third-party service;
+the index ships as static files alongside the rest of the site.
+
+**The index is built automatically by `npm run build`.** The `build` script runs
+`astro build && pagefind --site dist/client`, so the Pagefind step always runs against
+the freshly built HTML. Nothing extra to remember when publishing.
+
+> **Note:** `pagefind` is pointed at `dist/client`, not `dist`. The Cloudflare adapter
+> emits static HTML into `dist/client/` and the worker into `dist/server/`, and the
+> generated deploy config serves `dist/client` as the site root. Indexing `dist` would
+> record every result URL with a `/client/` prefix and write the index outside the
+> served asset root, so `/pagefind/` would 404 in production.
+
+### Testing search locally
+
+The index only exists in `dist/` — **`npm run dev` has no `/pagefind/` directory**, so
+the search page will show a "search is unavailable" message there. That's expected. To
+try search for real, build first:
+
+```bash
+npm run build && npm run preview
+# Visit http://localhost:8787/search
+```
+
+`npm run preview` already runs `npm run build` for you, so a bare `npm run preview` is
+enough — the two-step form above is just explicit about what's happening.
+
+### What gets indexed
+
+Pagefind only indexes elements marked with `data-pagefind-body`, and skips any page
+without one:
+
+| Location | Indexed |
+|----------|---------|
+| `src/layouts/PostLayout.astro` | Post title, date, categories and rendered markdown |
+| `src/pages/about.astro`, `tools.astro`, `contact.astro` | The page's own `<section>` |
+| Home, `/blog` archive pages, `/404`, `/search` | Not indexed — they only aggregate content indexed elsewhere |
+
+Scoping this way keeps the `Header.astro` nav and `Footer.astro` text out of the index,
+so site chrome never shows up as a match on every result.
+
+**When adding a new page**, add `data-pagefind-body` to the element wrapping its content
+if you want it searchable. Posts get it automatically from `PostLayout.astro`.
+
+### The search page
+
+`/search` (`src/pages/search.astro`) mounts Pagefind's default UI. It accepts a `?q=`
+query parameter, so you can link to a pre-run search from anywhere on the site:
+
+```html
+<a href="/search?q=passkeys">Search for passkeys</a>
+```
+
+Pagefind's default styles are re-themed to the site's palette in a `<style is:global>`
+block on that page, scoped under `#search` so the overrides can't leak into another
+Pagefind instance added later.
+
 ## Adding a New Post
 
 ### Quick start — use the script
@@ -111,6 +171,7 @@ src/
     ├── index.astro      # Home page
     ├── about.astro
     ├── contact.astro
+    ├── search.astro     # Pagefind search UI
     ├── tools.astro
     └── blog/
         ├── [...page].astro   # Paginated post archive
