@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
+import { unified } from '@astrojs/markdown-remark';
 import remarkWpButtons from './src/plugins/remark-wp-buttons.mjs';
 
 export default defineConfig({
@@ -11,6 +12,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   markdown: {
-    remarkPlugins: [remarkWpButtons],
+    processor: unified({ remarkPlugins: [remarkWpButtons] }),
   },
 });
