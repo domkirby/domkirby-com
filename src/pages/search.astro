@@ -14,17 +14,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
 
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-4xl font-bold text-white mb-4">Search</h1>
-    <p class="text-white/70 mb-10">
+    <h1 class="text-4xl font-bold text-fg mb-4">Search</h1>
+    <p class="text-muted mb-10">
       Search across every post and page.
     </p>
 
     <div id="search"></div>
 
     <noscript>
-      <p class="text-white/70">
+      <p class="text-muted">
         Search needs JavaScript enabled. You can browse the
-        <a href="/blog" class="text-green hover:underline">full post archive</a> instead.
+        <a href="/blog" class="text-accent hover:underline">full post archive</a> instead.
       </p>
     </noscript>
   </section>
@@ -38,11 +38,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style is:global>
   #search {
     --pagefind-ui-scale: 0.9;
-    --pagefind-ui-primary: var(--color-green);
-    --pagefind-ui-text: #ffffff;
+    --pagefind-ui-primary: var(--c-accent);
+    --pagefind-ui-text: var(--c-fg);
     --pagefind-ui-background: transparent;
-    --pagefind-ui-border: color-mix(in srgb, var(--color-green) 25%, transparent);
-    --pagefind-ui-tag: color-mix(in srgb, #ffffff 8%, transparent);
+    --pagefind-ui-border: color-mix(in srgb, var(--c-accent) 25%, transparent);
+    --pagefind-ui-tag: color-mix(in srgb, var(--c-fg) 8%, transparent);
     --pagefind-ui-border-width: 1px;
     --pagefind-ui-border-radius: 0.75rem;
     --pagefind-ui-image-border-radius: 0.5rem;
@@ -51,32 +51,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   /* Search input — match the card/input treatment used elsewhere on the site. */
   #search .pagefind-ui__search-input {
-    background-color: color-mix(in srgb, #ffffff 5%, transparent);
-    color: #ffffff;
+    background-color: color-mix(in srgb, var(--c-fg) 5%, transparent);
+    color: var(--c-fg);
     font-weight: 500;
   }
 
   #search .pagefind-ui__search-input::placeholder {
-    color: color-mix(in srgb, #ffffff 40%, transparent);
+    color: color-mix(in srgb, var(--c-fg) 40%, transparent);
   }
 
   #search .pagefind-ui__search-input:focus {
     outline: none;
-    border-color: color-mix(in srgb, var(--color-green) 60%, transparent);
+    border-color: color-mix(in srgb, var(--c-accent) 60%, transparent);
   }
 
   #search .pagefind-ui__search-clear {
     background-color: transparent;
-    color: color-mix(in srgb, #ffffff 60%, transparent);
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
   }
 
   #search .pagefind-ui__search-clear:hover {
-    color: var(--color-green);
+    color: var(--c-accent);
   }
 
   /* Result count / "load more" chrome. */
   #search .pagefind-ui__message {
-    color: color-mix(in srgb, #ffffff 60%, transparent);
+    color: color-mix(in srgb, var(--c-fg) 60%, transparent);
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -84,52 +84,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   #search .pagefind-ui__button {
-    background-color: color-mix(in srgb, #ffffff 5%, transparent);
-    border: 1px solid color-mix(in srgb, #ffffff 20%, transparent);
+    background-color: color-mix(in srgb, var(--c-fg) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c-fg) 20%, transparent);
     border-radius: 0.5rem;
-    color: #ffffff;
+    color: var(--c-fg);
     font-weight: 500;
   }
 
   #search .pagefind-ui__button:hover {
-    border-color: color-mix(in srgb, var(--color-green) 40%, transparent);
-    color: var(--color-green);
+    border-color: color-mix(in srgb, var(--c-accent) 40%, transparent);
+    color: var(--c-accent);
   }
 
   /* Result cards. */
   #search .pagefind-ui__result {
-    border-top: 1px solid color-mix(in srgb, #ffffff 10%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--c-fg) 10%, transparent);
   }
 
   #search .pagefind-ui__result-title .pagefind-ui__result-link {
-    color: #ffffff;
+    color: var(--c-fg);
     font-weight: 700;
     text-decoration: none;
   }
 
   #search .pagefind-ui__result-title .pagefind-ui__result-link:hover {
-    color: var(--color-green);
+    color: var(--c-accent);
     text-decoration: none;
   }
 
   #search .pagefind-ui__result-excerpt {
-    color: color-mix(in srgb, #ffffff 70%, transparent);
+    color: color-mix(in srgb, var(--c-fg) 70%, transparent);
   }
 
   /* Pagefind marks matched terms with <mark>. */
   #search .pagefind-ui__result-excerpt mark {
     background-color: transparent;
-    color: var(--color-green);
+    color: var(--c-accent);
     font-weight: 700;
   }
 
   #search .pagefind-ui__result-nested .pagefind-ui__result-link {
-    color: color-mix(in srgb, #ffffff 80%, transparent);
+    color: color-mix(in srgb, var(--c-fg) 80%, transparent);
     text-decoration: none;
   }
 
   #search .pagefind-ui__result-nested .pagefind-ui__result-link:hover {
-    color: var(--color-green);
+    color: var(--c-accent);
   }
 </style>
 
@@ -149,10 +149,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (typeof window.PagefindUI !== 'function') throw new Error('PagefindUI missing');
     } catch {
       container.innerHTML =
-        '<p class="text-white/70">Search is unavailable right now. ' +
+        '<p class="text-muted">Search is unavailable right now. ' +
         'The Pagefind index is only built by <code>npm run build</code>, ' +
         'so it is not present in <code>npm run dev</code>. ' +
-        '<a class="text-green hover:underline" href="/blog">Browse the archive</a> instead.</p>';
+        '<a class="text-accent hover:underline" href="/blog">Browse the archive</a> instead.</p>';
       return;
     }
 

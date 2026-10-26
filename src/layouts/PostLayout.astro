@@ -41,38 +41,30 @@ const ogImage = coverImage
           height={900}
           class="w-full h-full object-cover"
         />
-        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy to-transparent" />
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
       </div>
     ) : (
-      <div class="w-full h-32 bg-gradient-to-r from-navy via-linkblue to-navy border-b border-green/20" />
+      <div class="w-full h-32 bg-gradient-to-r from-brand-tint via-linkblue/30 to-brand-tint border-b border-accent/20" />
     )}
 
     <!-- Post header -->
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 border-b border-green/10">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 border-b border-accent/10">
       {categories.length > 0 && (
         <div class="flex flex-wrap gap-2 mb-4">
           {categories.map(cat => (
-            <span class="text-xs font-semibold uppercase tracking-widest text-green">
+            <span class="text-xs font-semibold uppercase tracking-widest text-accent">
               {cat}
             </span>
           ))}
         </div>
       )}
-      <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-3">{title}</h1>
-      <p class="text-white/50 text-sm">{formattedDate}</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-fg leading-tight mb-3">{title}</h1>
+      <p class="text-subtle text-sm">{formattedDate}</p>
     </div>
 
     <!-- Post content -->
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <article class="prose prose-invert prose-lg max-w-none
-        prose-headings:text-white
-        prose-a:text-green prose-a:no-underline prose-a:hover:underline
-        prose-strong:text-white
-        prose-code:text-green prose-code:bg-white/10 prose-code:px-1 prose-code:rounded
-        prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10
-        prose-blockquote:border-l-green prose-blockquote:text-white/70
-        prose-img:rounded-lg prose-img:mx-auto
-      ">
+      <article class="prose prose-site prose-lg max-w-none">
         <slot />
       </article>
     </div>

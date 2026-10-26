@@ -1,0 +1,73 @@
+---
+const options = [
+  {
+    value: 'system',
+    label: 'System theme',
+    path: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  },
+  {
+    value: 'light',
+    label: 'Light theme',
+    path: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+  },
+  {
+    value: 'dark',
+    label: 'Dark theme',
+    path: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z',
+  },
+];
+---
+
+<div role="radiogroup" aria-label="Color theme" data-theme-toggle class="inline-flex items-center rounded-full border border-line p-0.5">
+  {options.map(o => (
+    <button
+      type="button"
+      role="radio"
+      aria-checked="false"
+      aria-label={o.label}
+      title={o.label}
+      data-theme-option={o.value}
+      class="rounded-full p-1.5 text-subtle transition-colors hover:text-accent aria-checked:bg-accent aria-checked:text-bg"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={o.path} />
+      </svg>
+    </button>
+  ))}
+</div>
+
+<script>
+  const root = document.documentElement;
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function stored(): 'light' | 'dark' | 'system' {
+    try {
+      const t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') return t;
+    } catch {}
+    return 'system';
+  }
+
+  function apply(choice: string) {
+    if (choice === 'system') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', choice);
+    try {
+      if (choice === 'system') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', choice);
+    } catch {}
+    sync(choice);
+  }
+
+  function sync(choice: string) {
+    document.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((btn) => {
+      btn.setAttribute('aria-checked', String(btn.dataset.themeOption === choice));
+    });
+  }
+
+  sync(stored());
+  document.querySelectorAll<HTMLElement>('[data-theme-option]').forEach((btn) => {
+    btn.addEventListener('click', () => apply(btn.dataset.themeOption!));
+  });
+  // CSS follows the OS automatically while on "system"; nothing else to do on change.
+  mq.addEventListener('change', () => sync(stored()));
+</script>

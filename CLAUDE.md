@@ -47,7 +47,6 @@ domkirby-astro/
 │       ├── contact.astro    # Contact page
 │       └── tools.astro      # Tools and Stuff page
 ├── astro.config.mjs
-├── tailwind.config.mjs
 ├── tsconfig.json
 └── CLAUDE.md
 ```
@@ -143,3 +142,11 @@ npm run preview   # Preview production build locally
 - Post cards: 3-column grid, rounded featured image, blue linked title, date + categories, excerpt
 - Store link opens externally (external link icon in nav)
 - Keep it simple — the AI-generated post images carry the visual weight; the UI should stay clean and get out of the way
+
+## Theming (light / dark / system)
+
+- Tailwind v4, no config file: tokens live in `src/styles/global.css`. Use semantic utilities (`bg-bg`, `bg-surface`, `text-fg`, `text-muted`, `text-subtle`, `border-line`, `text-accent`), not `white`/`navy`/`green`.
+- Light is the default; dark applies via `prefers-color-scheme` or `data-theme="dark"` on `<html>`. `data-theme` is set from `localStorage.theme` by an inline script in `BaseHead.astro` (no flash); absent = follow the OS.
+- `ThemeToggle.astro` (System / Light / Dark) is in the header.
+- Accent is linkblue in light mode and green in dark; navy/blue are accents only. Post/page prose uses `.prose-site`, not `prose-invert`.
+- Logo: `public/dk-light.png` (dark bg) and `public/dk-dark.png` (light bg; currently a placeholder copy — replace with a dark variant).
