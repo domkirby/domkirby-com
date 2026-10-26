@@ -1,0 +1,177 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import stageShot from '../assets/bynd_stageshot_1.jpg';
+
+const stats = [
+  { value: '$3B+', label: 'Channel ecosystem experience' },
+  { value: '30+', label: 'Person professional services org led' },
+  { value: 'Global', label: 'Cybersecurity strategy and content' },
+  { value: '3 sides', label: 'MSP, vendor, and end-customer audiences' },
+];
+
+const topics = [
+  {
+    title: 'Stop Letting AI Slow You Down',
+    body: "Why the obsession with agents is costing MSPs more than it's saving them, and the diagnostic framework that fixes it.",
+  },
+  {
+    title: "The Cybersecurity Conversation Your Competitors Aren't Having",
+    body: 'How MSPs can move from reactive security sales to proactive advisory: the frameworks, the language, and the business case.',
+  },
+  {
+    title: "Working on the Client's Business",
+    body: "The MSPs winning right now aren't out-teching the competition, they're out-advising them.",
+  },
+];
+
+const ways = [
+  {
+    label: 'Signature talk',
+    body: 'A 45–60 minute keynote or breakout from the existing catalog, tailored to your audience.',
+    checks: ['Keynote or breakout format', 'Chosen from the topics above', 'Tailored to your audience'],
+  },
+  {
+    label: 'Custom engagement',
+    body: 'Original content, research, or workshops built for your event.',
+    checks: ['Original content or research', 'Workshop formats', 'Pre-event strategy call'],
+  },
+];
+---
+
+<BaseLayout
+  title="Speaking"
+  description="Operator-level insight for the MSP and channel ecosystem. Practitioner-focused talks for MSP peer groups, partner summits, vendor conferences and SKOs."
+>
+  <!-- data-pagefind-body: index this page's own content, not the site chrome -->
+  <div data-pagefind-body>
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 items-center">
+        <div>
+          <p class="text-accent text-sm font-semibold uppercase tracking-wider mb-3">For MSP and channel events</p>
+          <h1 class="text-4xl sm:text-5xl font-bold text-fg mb-5">
+            Operator-level insight for the MSP and channel ecosystem.
+          </h1>
+          <p class="text-muted text-lg mb-8">
+            Practitioner-focused talks for MSP peer groups, partner summits, vendor conferences and SKOs. Built from
+            running the business, not from reading about it.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <Button link="/contact">Book a conversation</Button>
+          </div>
+        </div>
+        <img
+          src="/headshot.png"
+          alt="Dom Kirby, arms crossed, in a black polo against a dark background"
+          width="800"
+          height="800"
+          class="w-56 h-56 md:w-full md:h-auto max-w-xs mx-auto rounded-2xl object-cover ring-4 ring-accent/40"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="bg-surface border-y border-line">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-3xl font-bold text-fg mb-4">Someone who has run the business<span class="text-accent">.</span></h2>
+          <p class="text-muted mb-4">
+            Dom Kirby founded his first MSP in Denver in 2015. Since then he has led professional services and
+            go-to-market work, and driven AI service programs at a large MSP distribution business.
+          </p>
+          <p class="text-muted">
+            He has stood on all three sides of the table: the MSP, the vendor, and the end customer. That is why the
+            talks are practical, plain, and specific to the room.
+          </p>
+        </div>
+        <ul class="grid grid-cols-2 gap-4" aria-label="Credentials">
+          {stats.map(stat => (
+            <li class="bg-bg border border-line rounded-xl p-4">
+              <strong class="block text-2xl font-bold text-accent">{stat.value}</strong>
+              <span class="text-muted text-sm">{stat.label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Stage photo -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14" aria-label="Dom Kirby speaking on stage">
+      <figure>
+        <Image
+          src={stageShot}
+          alt="Dom Kirby speaking on stage in front of a seated audience, gesturing mid-talk with a clicker in hand"
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          class="w-full h-auto rounded-xl border border-line"
+          loading="lazy"
+        />
+        <figcaption class="mt-3 text-sm text-muted">
+          <strong class="text-fg">On stage, not on slides.</strong>
+          Live, in the room, with the people who run these businesses.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Topics -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+      <h2 class="text-3xl font-bold text-fg mb-8">Speaker topics<span class="text-accent">.</span></h2>
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {topics.map((topic, i) => (
+          <li class="bg-surface border border-line rounded-xl p-6">
+            <div class="text-accent font-bold text-sm mb-2">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="text-lg font-bold text-fg mb-2">{topic.title}</h3>
+            <p class="text-muted text-sm">{topic.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Ways to work together -->
+    <section class="bg-surface border-y border-line">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <h2 class="text-3xl font-bold text-fg mb-8">Ways to work together<span class="text-accent">.</span></h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {ways.map((way, i) => (
+            <li class="bg-bg border border-line rounded-xl p-6">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-accent font-bold text-sm">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-fg font-bold">{way.label}</span>
+              </div>
+              <div class="text-subtle text-sm mb-3">Rates on inquiry</div>
+              <p class="text-muted mb-4">{way.body}</p>
+              <ul class="space-y-1 text-sm text-muted">
+                {way.checks.map(check => (
+                  <li class="flex gap-2">
+                    <span class="text-accent" aria-hidden="true">✓</span>
+                    {check}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Let's talk -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="bg-surface border border-line rounded-2xl p-8 sm:p-10">
+        <h2 class="text-3xl font-bold text-fg mb-3">Let's talk<span class="text-accent">.</span></h2>
+        <p class="text-muted mb-6 max-w-2xl">
+          Planning a conference track, SKO, or partner event? Tell Dom about the room and what you want them to walk
+          away with.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <Button link="/contact">Book a conversation</Button>
+        </div>
+      </div>
+      <p class="mt-8 text-xs text-subtle text-center">
+        The opinions expressed here are Dom Kirby's alone and not those of any affiliated organization.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

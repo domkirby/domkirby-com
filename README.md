@@ -48,7 +48,7 @@ without one:
 | Location | Indexed |
 |----------|---------|
 | `src/layouts/PostLayout.astro` | Post title, date, categories and rendered markdown |
-| `src/pages/about.astro`, `tools.astro`, `contact.astro` | The page's own `<section>` |
+| `src/pages/about.astro`, `tools.astro`, `contact.astro`, `speaking.astro` | The page's own `<section>` |
 | Home, `/blog` archive pages, `/404`, `/search` | Not indexed — they only aggregate content indexed elsewhere |
 
 Scoping this way keeps the `Header.astro` nav and `Footer.astro` text out of the index,
@@ -101,6 +101,13 @@ Two images are swapped by CSS (not `<picture>`, which would ignore the manual ch
 |------|---------|
 | `public/dk-light.png` | Dark backgrounds |
 | `public/dk-dark.png` | Light backgrounds |
+
+## Speaking and contact
+
+- `/speaking` (`src/pages/speaking.astro`) is the speaking page ported from the standalone
+  speaking site. Its "Book a conversation" buttons go to `/contact`.
+- `/contact` embeds a [Tally](https://tally.so) form (iframe plus the Tally loader script,
+  inline). The form is configured in Tally, not in this repo. Social links sit in a right column.
 
 ## Adding a New Post
 
@@ -202,7 +209,8 @@ src/
 └── pages/
     ├── index.astro      # Home page
     ├── about.astro
-    ├── contact.astro
+    ├── contact.astro    # Tally form (embed) + social links
+    ├── speaking.astro   # Speaking page (topics, ways to work together)
     ├── search.astro     # Pagefind search UI
     ├── tools.astro
     └── blog/
