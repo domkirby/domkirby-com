@@ -70,6 +70,38 @@ Pagefind's default styles are re-themed to the site's palette in a `<style is:gl
 block on that page, scoped under `#search` so the overrides can't leak into another
 Pagefind instance added later.
 
+## Theming (light / dark / system)
+
+The site follows the visitor's OS preference and offers a System / Light / Dark picker
+in the header (`src/components/ThemeToggle.astro`). Blues are accents only: the accent
+color is link blue (`#1025a1`) in light mode and brand green (`#7ed957`) in dark mode.
+
+### How it works
+
+- **Tokens:** semantic CSS variables (`--c-bg`, `--c-surface`, `--c-fg`, `--c-muted`,
+  `--c-subtle`, `--c-line`, `--c-accent`, ...) are defined in `src/styles/global.css`
+  and exposed to Tailwind via `@theme inline`. Light is the default; dark applies via
+  `prefers-color-scheme` or an explicit `data-theme="dark"` on `<html>`.
+- **Use the semantic utilities** (`bg-bg`, `bg-surface`, `text-fg`, `text-muted`,
+  `text-subtle`, `border-line`, `text-accent`) rather than `white` / `navy` / `green`, so
+  components don't need `dark:` variants.
+- **No flash:** an inline script in `BaseHead.astro` reads `localStorage.theme` and sets
+  `data-theme` before first paint. No stored value means "System" (follow the OS).
+- **Prose:** post and page content uses `prose prose-site` (defined in `global.css`)
+  instead of `prose-invert`.
+- **Code blocks:** Shiki is configured with `github-light` / `github-dark` in
+  `astro.config.mjs`, and CSS picks the matching colors per theme.
+- **Search:** the Pagefind overrides in `search.astro` use the same tokens.
+
+### Logo
+
+Two images are swapped by CSS (not `<picture>`, which would ignore the manual choice):
+
+| File | Used on |
+|------|---------|
+| `public/dk-light.png` | Dark backgrounds |
+| `public/dk-dark.png` | Light backgrounds |
+
 ## Adding a New Post
 
 ### Quick start — use the script
@@ -134,7 +166,7 @@ Just put the file in the post's `images/` folder and reference it with a path re
 ![Alt text describing the image](images/my-image.jpg)
 ```
 
-No need to copy anything to `public/` — Astro resolves and optimizes the image automatically at build time. The prose styles in `PostLayout.astro` will automatically center and round the corners of inline images.
+No need to copy anything to `public/` — Astro resolves and optimizes the image automatically at build time. The `.prose-site` styles will automatically center and round the corners of inline images.
 
 #### 4. Preview and publish
 
