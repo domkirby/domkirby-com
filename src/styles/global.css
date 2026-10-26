@@ -1,15 +1,118 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Brand primitives */
 @theme {
   --color-navy: #0b1970;
   --color-green: #7ed957;
   --color-linkblue: #1025a1;
 }
 
+/* Semantic tokens — light is the default; dark applies via the OS preference
+   (no data-theme) or an explicit data-theme="dark". */
+:root {
+  color-scheme: light;
+  --c-bg: #fafaf8;
+  --c-surface: #ffffff;
+  --c-fg: #0e1330;
+  --c-muted: #474d6b;
+  --c-subtle: #6a7090;
+  --c-line: rgb(14 19 48 / 0.12);
+  --c-accent: #1025a1;
+  --c-brand-tint: rgb(16 37 161 / 0.06);
+  --c-glow: rgb(16 37 161 / 0.12);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --c-bg: #080d24;
+  --c-surface: #0f1737;
+  --c-fg: #f2f4fb;
+  --c-muted: #b4bad3;
+  --c-subtle: #8a91b0;
+  --c-line: rgb(255 255 255 / 0.12);
+  --c-accent: #7ed957;
+  --c-brand-tint: rgb(13 31 140 / 0.35);
+  --c-glow: rgb(126 217 87 / 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --c-bg: #080d24;
+    --c-surface: #0f1737;
+    --c-fg: #f2f4fb;
+    --c-muted: #b4bad3;
+    --c-subtle: #8a91b0;
+    --c-line: rgb(255 255 255 / 0.12);
+    --c-accent: #7ed957;
+    --c-brand-tint: rgb(13 31 140 / 0.35);
+    --c-glow: rgb(126 217 87 / 0.15);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-fg: var(--c-fg);
+  --color-muted: var(--c-muted);
+  --color-subtle: var(--c-subtle);
+  --color-line: var(--c-line);
+  --color-accent: var(--c-accent);
+  --color-brand-tint: var(--c-brand-tint);
+  --color-glow: var(--c-glow);
+}
+
 @layer base {
   body {
-    background-image: linear-gradient(180deg, #0d1f8c0a 0%, transparent 500px);
+    background-image: linear-gradient(180deg, var(--c-brand-tint) 0%, transparent 500px);
     background-attachment: local;
   }
+}
+
+/* Logo variants: dk-light.png is for dark backgrounds, dk-dark.png for light. */
+.logo-on-dark { display: none; }
+.logo-on-light { display: block; }
+:root[data-theme="dark"] .logo-on-dark { display: block; }
+:root[data-theme="dark"] .logo-on-light { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-on-dark { display: block; }
+  :root:not([data-theme="light"]) .logo-on-light { display: none; }
+}
+
+/* Typography plugin mapped to semantic tokens (replaces prose-invert) */
+.prose-site {
+  --tw-prose-body: var(--c-muted);
+  --tw-prose-headings: var(--c-fg);
+  --tw-prose-lead: var(--c-muted);
+  --tw-prose-links: var(--c-accent);
+  --tw-prose-bold: var(--c-fg);
+  --tw-prose-counters: var(--c-subtle);
+  --tw-prose-bullets: var(--c-subtle);
+  --tw-prose-hr: var(--c-line);
+  --tw-prose-quotes: var(--c-muted);
+  --tw-prose-quote-borders: var(--c-accent);
+  --tw-prose-captions: var(--c-subtle);
+  --tw-prose-code: var(--c-accent);
+  --tw-prose-pre-code: var(--c-fg);
+  --tw-prose-pre-bg: var(--c-surface);
+  --tw-prose-th-borders: var(--c-line);
+  --tw-prose-td-borders: var(--c-line);
+}
+.prose-site a { text-decoration: none; }
+.prose-site a:hover { text-decoration: underline; }
+.prose-site :where(code):not(:where(pre *)) {
+  background: var(--c-line);
+  padding-inline: 0.25rem;
+  border-radius: 0.25rem;
+}
+.prose-site :where(pre) { border: 1px solid var(--c-line); }
+.prose-site :where(img) { border-radius: 0.5rem; margin-inline: auto; }
+
+/* Shiki dual themes: pick the token colors that match the active theme. */
+.astro-code, .astro-code span { color: var(--shiki-light); background-color: transparent; }
+:root[data-theme="dark"] .astro-code, :root[data-theme="dark"] .astro-code span { color: var(--shiki-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .astro-code,
+  :root:not([data-theme="light"]) .astro-code span { color: var(--shiki-dark); }
 }
