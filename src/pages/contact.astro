@@ -4,14 +4,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Contact" description="Get in touch with Dom Kirby.">
   <!-- data-pagefind-body: index this page's own content, not the site chrome -->
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16" data-pagefind-body>
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16" data-pagefind-body>
     <h1 class="text-4xl font-bold text-fg mb-4">Contact</h1>
-    <p class="text-muted mb-10">
-      Have a question, a speaking opportunity, or just want to say hello? Reach out using
-      any of the options below.
+    <p class="text-muted mb-10 max-w-2xl">
+      Have a question, a <a href="/speaking" class="text-accent hover:underline">speaking opportunity</a>, or just want
+      to say hello? Send a message with the form, or reach out on any of the channels alongside it.
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+    <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10 items-start">
+      <!-- Contact form -->
+      <div>
+        <iframe data-tally-src="https://tally.so/embed/rDDPXN?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&formEventsForwarding=1" loading="lazy" width="100%" height="483" frameborder="0" marginheight="0" marginwidth="0" title="Get in Touch"></iframe>
+      </div>
+
+      <!-- Social / other channels -->
+      <div class="grid grid-cols-1 gap-4">
 
       <a
         href="https://linkedin.com/in/dominickirby"
@@ -64,8 +71,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="text-lg font-bold text-fg group-hover:text-accent transition-colors mb-1">YouTube</h2>
         <p class="text-muted text-sm">@domkirby</p>
       </a>
+      </div>
     </div>
   </section>
+  <script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
   <script>
     //copy to clipboard for signal username
     document.getElementById('signalLink').addEventListener('click', function(e) {

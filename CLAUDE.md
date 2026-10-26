@@ -112,7 +112,8 @@ Planned pages:
 | `/blog` | `pages/blog/index.astro` | Full post archive |
 | `/blog/[slug]` | `pages/blog/[...slug].astro` | Dynamic post pages |
 | `/about` | `pages/about.astro` | Bio page |
-| `/contact` | `pages/contact.astro` | Contact info / form |
+| `/contact` | `pages/contact.astro` | Tally form embed + social links |
+| `/speaking` | `pages/speaking.astro` | Speaking topics and booking CTA |
 | `/tools` | `pages/tools.astro` | Tools and Stuff |
 
 ## Key Conventions
