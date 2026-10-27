@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import Button from '../components/Button.astro';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const recentPosts = allPosts
@@ -11,19 +12,60 @@ const recentPosts = allPosts
 
 <BaseLayout title="Home" description="Security, technology, and insights from Dom Kirby.">
   <!-- Hero -->
-  <section class="relative bg-gradient-to-br from-brand-tint via-bg to-bg border-b border-accent/20 py-20 px-4 overflow-hidden">
+  <section class="relative bg-gradient-to-br from-brand-tint via-bg to-bg border-b border-accent/20 py-16 sm:py-20 px-4 overflow-hidden">
     <!-- Atmospheric spotlight -->
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div class="w-[600px] h-[300px] bg-accent/5 blur-3xl rounded-full"></div>
     </div>
-    <div class="relative max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-fg">
-        Security | Technology | Insights
-      </h1>
-      <p class="text-muted text-lg max-w-2xl mx-auto mb-8">
-        Thoughts on cybersecurity, technology trends, and the tools that make us more effective.
+    <div class="relative max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="text-center md:text-left">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 text-fg">
+          Dom Kirby
+        </h1>
+        <p class="text-accent font-medium mb-4">Cybersecurity, Cloud &amp; AI for SMBs | CISSP, SSCP | People-First Leader</p>
+        <p class="text-muted text-lg max-w-xl mx-auto md:mx-0 mb-8">
+          I work at the intersection of technology, business, and people, helping others cut through complexity in cloud, cybersecurity, and AI.
+        </p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+          <Button link="/speaking">Book a Speaking Slot</Button>
+          <a
+            href="/blog"
+            style="display:inline-block; font-weight:700; padding:0.75rem 1.5rem; border-radius:0.5rem; text-decoration:none;"
+            class="border-2 border-accent text-fg hover:bg-accent/10 transition-colors"
+          >
+            Blog
+          </a>
+        </div>
+      </div>
+      <div class="flex justify-center md:justify-end">
+        <img
+          src="/headshot.png"
+          alt="Dom Kirby"
+          class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-2xl object-cover ring-4 ring-accent/40"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <!-- data-pagefind-body: index this section's own content, not the site chrome -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16" data-pagefind-body>
+    <div class="prose prose-site prose-lg max-w-none">
+      <p>I work at the intersection of technology, business, and people. At Pax8, I lead a team of engineers, strategists, and operations professionals who deliver technical outcomes for thousands of managed service providers. My focus is on cloud, cybersecurity, and how AI can transform the way services are delivered at scale.</p>
+      <p>
+        I spend a lot of time helping others cut through complexity—whether that’s driving results for partners, shaping how vendors think about security and AI, or sharing insights on stage at conferences. Just as important, I’m always learning. Every conversation, project, and challenge is an opportunity to pick up something new and carry it forward.
       </p>
-      <div class="h-px max-w-xs mx-auto bg-gradient-to-r from-transparent via-accent/40 to-transparent"></div>
+      <p>
+        At the core, I’m passionate about connecting innovation to real-world outcomes. That means building strategies that don’t just look good on paper, but work in practice.
+      </p>
+      <p>
+        Outside of work, I keep things grounded with family, community, and a steady curiosity for what’s next.
+      </p>
+      <h2>Get in Touch</h2>
+      <p>
+        Feel free to reach out via the <a href="/contact">contact page</a>, or connect with me
+        on social media.
+      </p>
     </div>
   </section>
 
